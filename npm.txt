@@ -5,3 +5,6 @@ npm i -s serve-favicon
 npm i -s http-errors
 npm i -D webpack webpack-cli babel-loader @babel/core @babel/preset-env
 npm i -D babel-minify-webpack-plugin
+npm i -D sass-loader node-sass css-loader postcss-loader mini-css-extract-plugin
+npm i -D cssnano autoprefixer
+npm i -D concurrently
