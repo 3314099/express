@@ -1,1 +1,3 @@
 npm init -y
+npm i -s express cookie-parser ejs morgan
+npm i -s nodemon

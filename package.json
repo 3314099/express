@@ -1,17 +1,24 @@
 {
-  "name": "express",
+  "name": "express-js",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://3314099@bitbucket.org/3314099/express.git"
   },
-  "keywords": [],
-  "author": "Andrey Petrov <3314099@mail.ru>,
+  "author": "Andrey Petrov <3314099@mail.ru>",
   "license": "ISC",
-  "homepage": "https://bitbucket.org/3314099/express#readme"
+  "homepage": "https://bitbucket.org/3314099/express#readme",
+  "dependencies": {
+    "cookie-parser": "^1.4.5",
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.4"
+  }
 }
