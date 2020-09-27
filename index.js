@@ -4,14 +4,31 @@ const logger = require('morgan')
 const cookieParser = require('cookie-parser')
 const favicon = require('serve-favicon')
 const createError = require('http-errors')
+const bodyParser = require('body-parser')
+const mongoose = require('mongoose')
+require('dotenv').config()
 
 const app = express()
 const port = 3000
 const indexRouter = require('./routes/index')
+const userRouter = require('./routes/users')
+
+const url = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.sar7r.mongodb.net/webapp?retryWrites=true&w=majority`
+
+mongoose.connect(url, {
+	useNewUrlParser:true,
+	useUnifiedTopology: true
+}, ()=> {
+	console.log('DB connected...')
+})
+
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false}))
 
 app.use(express.static(path.join(__dirname, 'public')))
 app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 app.use('/', indexRouter)
+app.use(userRouter)
 
 app.use(logger('dev'))
 app.use(express.json())

@@ -8,3 +8,4 @@ npm i -D babel-minify-webpack-plugin
 npm i -D sass-loader node-sass css-loader postcss-loader mini-css-extract-plugin
 npm i -D cssnano autoprefixer
 npm i -D concurrently
+npm i -s dotenv body-parser mongoose
