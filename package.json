@@ -17,10 +17,13 @@
   "license": "ISC",
   "homepage": "https://bitbucket.org/3314099/express#readme",
   "dependencies": {
+    "body-parser": "^1.19.0",
     "cookie-parser": "^1.4.5",
+    "dotenv": "^8.2.0",
     "ejs": "^3.1.5",
     "express": "^4.17.1",
     "http-errors": "^1.8.0",
+    "mongoose": "^5.10.7",
     "morgan": "^1.10.0",
     "nodemon": "^2.0.4",
     "serve-favicon": "^2.5.0"
