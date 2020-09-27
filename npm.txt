@@ -3,3 +3,5 @@ npm i -s express cookie-parser ejs morgan
 npm i -s nodemon
 npm i -s serve-favicon
 npm i -s http-errors
+npm i -D webpack webpack-cli babel-loader @babel/core @babel/preset-env
+npm i -D babel-minify-webpack-plugin
