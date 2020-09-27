@@ -3,6 +3,7 @@ const path = require('path')
 const logger = require('morgan')
 const cookieParser = require('cookie-parser')
 const favicon = require('serve-favicon')
+const createError = require('http-errors')
 
 const app = express()
 const port = 3000
@@ -22,6 +23,17 @@ app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 app.engine('html', require('ejs').renderFile)
 
+// catch 404 and forvard to error handler
+app.use((req, res, next) => {
+	next(new createError.NotFound())
+})
+
+// error handler
+app.use((err, req, res, next) => {
+	//render error page
+	res.status(err.status || 500)
+	res.render('error.html', {err})
+})
 
 app.listen(port,()=>{
 	console.log(`webapp listening on port ${port}`)
