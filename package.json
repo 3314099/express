@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack -w",
     "start": "nodemon index.js",
-    "webapp:dev": "concurrently 'npm:build' 'npm:start' "
+    "dev": "concurrently 'npm:build' 'npm:start' "
   },
   "repository": {
     "type": "git",
