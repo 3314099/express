@@ -56,19 +56,19 @@ module.exports = {
 			title: 'Home',
 			template: 'html/index.html',
 			filename: 'views/index.html',
-			minify: true
+			minify: false
 		}),
 		new HtmlWebpackPlugin({
 			title: 'About',
 			template:'html/about.html',
 			filename: 'views/about.html',
-			minify: true
+			minify: false
 		}),
 		new HtmlWebpackPlugin({
 			title: 'Error',
 			template:'html/error.html',
 			filename: 'views/error.html',
-			minify: true,
+			minify: false,
 			templateParameters: {
 				message: '<%= message %>',
 				status: '<%= status %>'
