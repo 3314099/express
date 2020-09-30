@@ -10,3 +10,6 @@ npm i -D cssnano autoprefixer
 npm i -D concurrently
 npm i -s dotenv body-parser mongoose
 npm i -D bootstrap jquery popper.js
+
+npm i -D browser-sync-webpack-plugin browser-sync
+npm i -D html-webpack-plugin html-webpack-partials-plugin

@@ -1,6 +1,8 @@
 const path = require('path')
 const MinifyPlugin = require('babel-minify-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
 	mode: 'development',
@@ -39,6 +41,38 @@ module.exports = {
 		}),
 		new MiniCssExtractPlugin({
 			filename: '[name].css'
+		}),
+		new BrowserSyncPlugin({
+			host: 'localhost',
+			port: 3001,
+			proxy: 'http://localhost:3000',
+			files: [
+				'public/views',
+				'/routes'
+			],
+			// server: {baseDir: ['public']}
+		}),
+		new HtmlWebpackPlugin({
+			title: 'Home',
+			template: 'html/index.html',
+			filename: 'views/index.html',
+			minify: false
+		}),
+		new HtmlWebpackPlugin({
+			title: 'About',
+			template:'html/about.html',
+			filename: 'views/about.html',
+			minify: false
+		}),
+		new HtmlWebpackPlugin({
+			title: 'Error',
+			template:'html/error.html',
+			filename: 'views/error.html',
+			minify: false,
+			templateParameters: {
+				message: '<%= message %>',
+				status: '<%= status %>'
+			}
 		})
 	]
 }
