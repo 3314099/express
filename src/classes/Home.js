@@ -1,4 +1,11 @@
-<!doctype html>
+export class Home {
+	constructor(title) {
+		this.title = title
+	}
+
+	toHtml(){
+		return `
+		<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -40,3 +47,6 @@
 
 </body>
 </html>
+		`
+	}
+}

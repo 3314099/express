@@ -8,7 +8,7 @@ module.exports = {
 	mode: 'development',
 	devtool: 'source-map',
 	context: path.resolve(__dirname, 'src'),
-	entry: ['./main.js', './main.scss'],
+	entry: ['index.js', './main.js', './main.scss'],
 	output: {
 		path: path.resolve(__dirname, 'public')
 	},
@@ -50,28 +50,33 @@ module.exports = {
 				'public/views',
 				'/routes'
 			],
+			reload: false
 			// server: {baseDir: ['public']}
 		}),
 		new HtmlWebpackPlugin({
-			title: 'Home',
 			template: 'html/index.html',
 			filename: 'views/index.html',
-			minify: false
+			minify: false,
+			templateParameters: {
+				title: '<%= title %>',
+			}
 		}),
 		new HtmlWebpackPlugin({
-			title: 'About',
 			template:'html/about.html',
 			filename: 'views/about.html',
-			minify: false
+			minify: false,
+			templateParameters: {
+				title: '<%= title %>',
+			}
 		}),
 		new HtmlWebpackPlugin({
-			title: 'Error',
 			template:'html/error.html',
 			filename: 'views/error.html',
 			minify: false,
 			templateParameters: {
-				message: '<%= message %>',
-				status: '<%= status %>'
+				title: 'Error Page'
+				// message: '<%= message %>',
+				// status: '<%= status %>'
 			}
 		})
 	]
