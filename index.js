@@ -42,7 +42,7 @@ app.engine('html', require('ejs').renderFile)
 
 // catch 404 and forvard to error handler
 app.use((req, res, next) => {
-	next(new createError.NotFound())
+	next(new createError.HttpError)
 })
 
 // error handler
