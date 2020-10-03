@@ -100,6 +100,20 @@ module.exports = {
 				'views/error.html',
 				'views/scripts.html'
 			]
+		}),
+		new HtmlWebpackPartialsPlugin({
+			path: path.resolve(__dirname, 'src/html/partials/scripts/calc.html'),
+			location: 'calc',
+			template_filename: [
+				'views/scripts.html'
+			]
+		}),
+		new HtmlWebpackPartialsPlugin({
+			path: path.resolve(__dirname, 'src/html/partials/scripts/todo.html'),
+			location: 'todo',
+			template_filename: [
+				'views/scripts.html'
+			]
 		})
 	]
 }

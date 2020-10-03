@@ -1,5 +1,5 @@
 
 import 'bootstrap'
-import './html/scripts/calc'
+import './html/scripts/calc/calc.js'
 
 

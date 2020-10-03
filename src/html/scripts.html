@@ -8,13 +8,9 @@
 <navbar></navbar>
 <h1>Scripts</h1>
 <div id="scripts">
-	<link rel="import" href="/calc/calc.html">
+	<calc></calc>
+	<todo></todo>
 </div>
 
-<script>
-	const link = document.querySelector('link[rel=import]');
-	const content = link.import.querySelector('#intro-dm');
-	document.body.appendChild(content.cloneNode(true));
-</script>
 </body>
 </html>
