@@ -42,13 +42,14 @@ app.engine('html', require('ejs').renderFile)
 
 // catch 404 and forvard to error handler
 app.use((req, res, next) => {
-	next(new createError.HttpError)
+	next(new createError)
 })
 
 // error handler
 app.use((err, req, res, next) => {
 	//render error page
-	res.status(err.status || 500)
+	console.error(err.stack)
+	res.status(err.status)
 	res.render('error.html', {err})
 })
 

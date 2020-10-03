@@ -24,4 +24,10 @@ router.get('/about', (req, res)=> {
 		appname: 'WebbApp'})
 })
 
+router.get('/scripts', (req, res)=> {
+	res.render('scripts.html', {
+		title: 'Scripts'
+	})
+})
+
 module.exports = router

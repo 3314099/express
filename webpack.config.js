@@ -3,12 +3,13 @@ const MinifyPlugin = require('babel-minify-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const HtmlWebpackPartialsPlugin = require('html-webpack-partials-plugin')
 
 module.exports = {
 	mode: 'development',
 	devtool: 'source-map',
 	context: path.resolve(__dirname, 'src'),
-	entry: ['index.js', './main.js', './main.scss'],
+	entry: ['./main.js', './main.scss'],
 	output: {
 		path: path.resolve(__dirname, 'public')
 	},
@@ -74,10 +75,31 @@ module.exports = {
 			filename: 'views/error.html',
 			minify: false,
 			templateParameters: {
-				title: 'Error Page'
+				title: 'Error Page',
+				mesage: '<%= message %>',
+				status: '<%= error.status %>',
+				stack: '<%= error.stack %>'
+			}
+		}),
+		new HtmlWebpackPlugin({
+			template:'html/scripts.html',
+			filename: 'views/scripts.html',
+			minify: false,
+			templateParameters: {
+				title: 'Scripts'
 				// message: '<%= message %>',
 				// status: '<%= status %>'
 			}
+		}),
+		new HtmlWebpackPartialsPlugin({
+			path: path.resolve(__dirname, 'src/html/partials/navbar.html'),
+			location: 'navbar',
+			template_filename: [
+				'views/index.html',
+				'views/about.html',
+				'views/error.html',
+				'views/scripts.html'
+			]
 		})
 	]
 }
