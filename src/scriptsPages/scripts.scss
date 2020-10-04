@@ -1,0 +1,31 @@
+@import './src/scriptsPages/calculator/style.scss';
+
+#scripts {
+  background-color: cadetblue;
+
+  .script-row {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    border-top: 1px black solid;
+  }
+
+  .work {
+    width: 40%;
+    background-color: aqua;
+    text-align: center;
+  }
+  .code-html {
+    width: 20%;
+    background-color: burlywood;
+  }
+  .code-css {
+    width: 20%;
+    background-color: chocolate;
+  }
+  .code-js {
+    width: 20%;
+    background-color: indianred;
+  }
+}

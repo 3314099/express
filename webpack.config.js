@@ -1,9 +1,21 @@
 const path = require('path')
+const fs = require('fs')
+const Scripts = require('./src/core/Scripts')
+
 const MinifyPlugin = require('babel-minify-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const HtmlWebpackPartialsPlugin = require('html-webpack-partials-plugin')
+
+const scriptsPages= ['calculator', 'todos']
+scriptsPages.forEach(page => {
+	const block = new Scripts(page)
+	const script = block.getBlock().then(data => {
+		console.log('webpack:', data)
+	})
+});
+
 
 module.exports = {
 	mode: 'development',
@@ -54,45 +66,35 @@ module.exports = {
 			reload: false
 			// server: {baseDir: ['public']}
 		}),
-		new HtmlWebpackPlugin({
-			template: 'html/index.html',
-			filename: 'views/index.html',
+		pagesPlugin('index', {
+			title: 'Главная страница',
+			message: ''
+		}),
+		pagesPlugin('about', {
+			title: 'AboutPage',
+			message: ''
+		}),
+		partialsPlugin(), scriptsPlugin()
+	]
+}
+
+function pagesPlugin(page, templateParameters) {
+	const title = templateParameters.title
+	const message = templateParameters.message
+	return new HtmlWebpackPlugin({
+			template: 'navPages/' + page + '.html',
+			filename: 'views/' + page + '.html',
 			minify: false,
 			templateParameters: {
-				title: '<%= title %>',
+				title: title,
+				message: message,
 			}
-		}),
-		new HtmlWebpackPlugin({
-			template:'html/about.html',
-			filename: 'views/about.html',
-			minify: false,
-			templateParameters: {
-				title: '<%= title %>',
-			}
-		}),
-		new HtmlWebpackPlugin({
-			template:'html/error.html',
-			filename: 'views/error.html',
-			minify: false,
-			templateParameters: {
-				title: 'Error Page',
-				mesage: '<%= message %>',
-				status: '<%= error.status %>',
-				stack: '<%= error.stack %>'
-			}
-		}),
-		new HtmlWebpackPlugin({
-			template:'html/scripts.html',
-			filename: 'views/scripts.html',
-			minify: false,
-			templateParameters: {
-				title: 'Scripts'
-				// message: '<%= message %>',
-				// status: '<%= status %>'
-			}
-		}),
-		new HtmlWebpackPartialsPlugin({
-			path: path.resolve(__dirname, 'src/html/partials/navbar.html'),
+		})
+}
+
+function partialsPlugin() {
+	return new HtmlWebpackPartialsPlugin({
+			path: path.resolve(__dirname, 'src/navPages/partials/navbar.html'),
 			location: 'navbar',
 			template_filename: [
 				'views/index.html',
@@ -100,20 +102,39 @@ module.exports = {
 				'views/error.html',
 				'views/scripts.html'
 			]
-		}),
-		new HtmlWebpackPartialsPlugin({
-			path: path.resolve(__dirname, 'src/html/partials/scripts/calc.html'),
-			location: 'calc',
-			template_filename: [
-				'views/scripts.html'
-			]
-		}),
-		new HtmlWebpackPartialsPlugin({
-			path: path.resolve(__dirname, 'src/html/partials/scripts/todo.html'),
-			location: 'todo',
-			template_filename: [
-				'views/scripts.html'
-			]
 		})
+}
+
+function scriptsPlugin() {
+	const script =  new HtmlWebpackPlugin({
+		template:'navPages//scripts.html',
+		filename: 'views/scripts.html',
+		minify: false,
+		templateParameters: {
+			title: 'Scripts',
+			message: 'ggg',
+			code: scriptsCode()
+			// status: '<%= status %>'
+		}
+	})
+	return script
+}
+
+function scriptsCode() {
+	return [
+		{
+			id: 'id_1',
+			hlml: 'html',
+			htmlCode: 'htmlCode',
+			css: 'css',
+			js: 'js'
+		},
+		{
+			id: 'id_2',
+			hlml: 'html_2',
+			htmlCode: 'htmlCode_2',
+			css: 'css_2',
+			js: 'js_2'
+		}
 	]
 }
